@@ -1,0 +1,11 @@
+ffffff BLANCO
+grises
+e0e0e0
+f7f7f7
+otro
+0d6efd
+#f7f9fa;
+eaeef1
+e0e3e7 (fondo gris)
+#212529 (dark)
+

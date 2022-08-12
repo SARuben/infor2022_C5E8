@@ -1,0 +1,66 @@
+from django.shortcuts import render, redirect
+import datetime 
+from ejemplo.models import Noticia
+from ejemplo.models import Comentario
+from django.views.generic import DetailView,ListView,CreateView,DeleteView,UpdateView
+from django.conf import settings 
+from django.core.mail import send_mail
+from .form import comentarioForm
+from .models import Comentario
+from django.urls import reverse_lazy
+
+
+# Create your views here
+
+''' def inicio (request):
+    contexto = {}
+    posteos = Noticia.objects.all()
+    contexto['posteos'] = posteos
+    hoy = datetime.datetime.now()
+    contexto['dia'] =  hoy
+    return render(request,'inicio.html',contexto)
+'''
+
+class Inicio(ListView):
+  model = Noticia
+  template_name = 'inicio.html'
+  paginate_by  = 2
+
+  def get_queryset(self): 
+        query = super(Inicio,self).get_queryset().order_by('-published_date').values()
+        return query
+
+def contacto(request):
+    return render(request,'FormularioContacto.html')
+
+# def videos(request):
+#     return render(request,'videos.html')
+
+class Videos(ListView):
+   template_name = 'videos.html'
+
+   def  get_queryset(self):
+        query = super(Videos,self).get_queryset
+        return query 
+
+
+def calendario(request):    
+    return render(request,'calendario.html')
+
+def contactar(request):
+    if request.method == 'POST':
+          asunto = request.POST["txtAsunto"]
+          mensaje = request.POST["txtMensaje"] + "/Email:" + request.POST["txtEmail"]
+          email_desde = settings.EMAIL_HOST_USER
+          email_para = ["arubensanchezg@gmail.com"]
+          send_mail(asunto,mensaje,email_desde,email_para,fail_silently=False) 
+          return render(request,'envioexitoso.html')
+    return render(request,'FormularioContacto.html')      
+
+class CrearComentario(CreateView):
+    model = Comentario
+    form_class  = comentarioForm
+    template_name = 'CrearComentario.html'
+    success_url = reverse_lazy('inicio')
+
+

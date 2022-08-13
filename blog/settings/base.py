@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'blog.wsgi.application'
     }
 } '''
 
-DATABASES = {
+''' DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'vientos',
@@ -95,6 +95,16 @@ DATABASES = {
         'PASSWORD': 'arsan2118',
         'PORT': '3306',
         
+    }
+} '''
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'vientos',
+        'USER': 'postgres',
+        'PASSWORD': 'info',
+        'HOST': 'Localhost',
+        'PORT': '5432',
     }
 }
 

@@ -93,3 +93,8 @@
     background: url('//i.imgur.com/TxzC70f.png') no-repeat;
     cursor: pointer;
   }
+  .titulodelvideo {
+    background-color: #0d6efd;
+    color: white;
+    text-align: center;
+  }

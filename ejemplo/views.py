@@ -1,12 +1,10 @@
 from django.shortcuts import render, redirect
 import datetime 
-from ejemplo.models import Noticia
-from ejemplo.models import Comentario
+from ejemplo.models import Noticia , Comentario, Video, Historia
 from django.views.generic import DetailView,ListView,CreateView,DeleteView,UpdateView
 from django.conf import settings 
 from django.core.mail import send_mail
-from .form import comentarioForm
-from .models import Comentario
+from .form import NoticiasForm, comentarioForm
 from django.urls import reverse_lazy
 
 
@@ -23,8 +21,9 @@ from django.urls import reverse_lazy
 
 class Inicio(ListView):
   model = Noticia
+  form_class = NoticiasForm
   template_name = 'inicio.html'
-  paginate_by  = 2
+  paginate_by  = 3
 
   def get_queryset(self): 
         query = super(Inicio,self).get_queryset().order_by('-published_date').values()
@@ -33,12 +32,10 @@ class Inicio(ListView):
 def contacto(request):
     return render(request,'FormularioContacto.html')
 
-# def videos(request):
-#     return render(request,'videos.html')
-
 class Videos(ListView):
+   model = Video
    template_name = 'videos.html'
-
+   
    def  get_queryset(self):
         query = super(Videos,self).get_queryset
         return query 
@@ -62,5 +59,13 @@ class CrearComentario(CreateView):
     form_class  = comentarioForm
     template_name = 'CrearComentario.html'
     success_url = reverse_lazy('inicio')
+
+class Historias(ListView):
+    model = Historia
+    template_name = 'Historias.html'
+
+    def  get_queryset(self):
+        query = super(Historias,self).get_queryset
+        return query 
 
 

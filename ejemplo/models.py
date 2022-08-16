@@ -45,7 +45,10 @@ class  Historia(models.Model):
     nombre = models.CharField(max_length = 40)
     apellido = models.CharField(max_length = 40)
     historia = models.TextField()
-    imagen = models.ImageField(upload_to = 'imagenes/', null=True, blank=True)   
+    imagen = models.ImageField(upload_to = 'imagenes/', null=True, blank=True)  
+
+    def GetNombre(self):
+        return self.nombre + ' ' + self.apellido 
     
  # Create your models 
 # here.

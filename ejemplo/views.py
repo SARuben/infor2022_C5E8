@@ -10,15 +10,6 @@ from django.urls import reverse_lazy
 
 # Create your views here
 
-''' def inicio (request):
-    contexto = {}
-    posteos = Noticia.objects.all()
-    contexto['posteos'] = posteos
-    hoy = datetime.datetime.now()
-    contexto['dia'] =  hoy
-    return render(request,'inicio.html',contexto)
-'''
-
 class Inicio(ListView):
   model = Noticia
   form_class = NoticiasForm
@@ -62,8 +53,7 @@ class CrearComentario(CreateView):
 
 class Historias(ListView):
     model = Historia
-    template_name = 'Historias.html'
-
+    template_name = 'GaleriaHistorias.html'
     def  get_queryset(self):
         query = super(Historias,self).get_queryset
         return query 

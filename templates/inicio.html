@@ -81,12 +81,13 @@
 
             </a>
             <ul class="nav  nav-pills" id="itmnavbar">
-              <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Inicio</a></li>
-              <li class="nav-item"><a href="#titulo_presentacion" class="nav-link">Nosotros</a></li>
-              <li class="nav-item"><a href="{% url 'calendario' %}" class="nav-link">Calendario</a></li>
+              <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Inicio</a></li> 
               <li class="nav-item"><a href="#noticias" class="nav-link">Noticias</a></li>
+              <li class="nav-item"><a href="{% url 'calendario' %}" class="nav-link">Calendario</a></li> 
+              <li class="nav-item"><a href="{% url 'Equipo' %}" class="nav-link">Equipo</a></li>
               <li class="nav-item"><a href="{% url 'Historias' %}" class="nav-link">Historias</a></li>
               <li class="nav-item"><a href="{% url 'videos' %}" class="nav-link">Videos</a></li>
+              <li class="nav-item"><a href="{% url 'Imagenes' %}" class="nav-link">Imagenes</a></li>
               <li class="nav-item"><a href="{% url 'crearcomentario' %}" class="nav-link">Comentarios</a></li> 
             </ul>
           </div>
@@ -178,16 +179,20 @@
          <h2 class="pb-2 border-bottom" id="contacto"><b>CONTACTOS: </b></h2>
          <p class="descripcion">Podes conocer más sobre nuestra actividad en nuestra página de
            <a href="https://www.facebook.com/orquestavientosdecambio" class="btn btn-danger btn-lg">
-               Facebook </a> 
-         </p> 
+               Facebook
+           </a> 
+              Te invitamos a que visites nuestro 
+              <a href="https://www.youtube.com/channel/UCi4FuxJHYOk1eOgNd3vpH_g" 
+                 class = "btn btn-warning btn-lg">Canal de Youtube
+              </a>
+            </p>
       </div>
 
       <div class="divisor2"></div> 
 
       <div class="noticias" id="noticias">
-        <h1 class="pb-2 border-bottom" id="titulonoticias"><b>Noticias</b>
-          <i class="bi bi-file-text-fill" aria-hidden="true"></i>
-        </h1>
+        <h1 class="pb-2 border-bottom" id="titulonoticias"><b>Noticias</b></h1>
+        <h2 class="envaseicono text-center"> <i class="bi bi-file-text-fill " aria-hidden="true"></i></h2>
       </div>  
       <div class="container" id="blog">
          <!-- <div class="col-md-8"></div> -->
@@ -196,9 +201,6 @@
                 <article class="blog-post" id="articulo">
                    <h2 class="blog-post-title">{{ posteo.title}}</h2>
                    <p class="blog-post-meta">{{ posteo.published_date|date:'d/m/Y' }}</p>
-                   {% if forloop.counter|divisibleby:"3" %}
-                     <p>for loop es divible por 3</p>
-                   {% endif %}  
                    <p class="blog-post-meta">{{ posteo.text }}</p>
                    {% if posteo.imagen %}
                     <img src= "../media/{{posteo.imagen}}" class=" img-fluid d-block mx-auto" width="500" height="400"> 

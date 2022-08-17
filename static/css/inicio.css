@@ -30,10 +30,6 @@
  	align-items: center;
 }
 
-/* #tarjeta .titulotarjeta:hover {
-	background-color: #93dff1;
-	border: solid 1px violet;
-} */
 .icon-link > .bi {
     margin-top: .125rem;
     margin-left: .125rem;
@@ -153,7 +149,7 @@
 }
 
 #articulo:hover {
-	background-color: rgb(247, 247, 204);
+	background-color: #faa29f;
 	color:black;
 }
 

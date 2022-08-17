@@ -49,6 +49,21 @@ class  Historia(models.Model):
 
     def GetNombre(self):
         return self.nombre + ' ' + self.apellido 
-    
+
+
+class Equipo(models.Model):
+    nombre = models.CharField(max_length = 40)
+    apellido = models.CharField(max_length = 40)
+    comentario = models.TextField(max_length = 200)
+    imagen = models.ImageField(upload_to = 'imagenes/', null=True, blank=True)  
+    def SuNombreEs(self):
+        return self.nombre + ' ' + self.apellido 
+
+
+class GaleriaFoto(models.Model):
+    descripcion = models.CharField(max_length = 40)
+    imagen = models.ImageField(upload_to = 'imagenes/', null=True, blank=True)
+
+
  # Create your models 
 # here.

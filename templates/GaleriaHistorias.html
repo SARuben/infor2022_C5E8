@@ -35,9 +35,19 @@
 
 }
 #Caja:hover {
-  border: solid color #ea4843;
-
+  border: solid 2px #ea4843;
 }  
+.card-body {
+  width: 300px;
+  border: 1px ;
+  padding: 2px;
+  
+}  
+.card-text {
+  text-overflow: ellipsis;
+  text-align:center;
+} 
+
 </style>
 
 <body>
@@ -47,8 +57,9 @@
     
     <section class="py-5 text-center container">
       <div class="row py-lg-3">
-        <div class="col-lg-6 col-md-8 mx-auto">
+        <div class="col-lg-6 col-md-8 mx-auto rounded">
           <h1 class="fw-light titulogaleria">Galería de Historias</h1>
+          <h4> <i class="bi bi-book-half"></i> </h4>
           <p class="lead text-muted">Te compartimos algunas historias
                                      de alumnos que han pasado o que aun estan integrando la orquesta
                                      y que merecen ser narradas.Son ellos un gran orgullo para la institucion</p>
@@ -57,7 +68,7 @@
       </div>
     </section>
     {% load static %}
-    <div class="album py-5 bg-light">
+    <div class="album py-5 bg-light shadow p-3 mb-5 rounded">
       <div class="container breakpoint contenedor">
         <div class="row ">
           {% for his in object_list %}  
@@ -66,17 +77,15 @@
               <h4 class="titulo">{{ his.GetNombre }}</h4>
               {% if his.imagen %} 
                 <div class="container text-center">  
-                  <img src="../media/{{ his.imagen }} " class = "breakpoint shadow bg-body rounded"  alt="Imagen1"  class="img-fluid" width="90%" max-height=auto id="imagen">
+                  <img src="../media/{{ his.imagen }}" class = "breakpoint shadow bg-body rounded"  alt="Imagen1"  class="img-fluid" width="90%" max-height=auto id="imagen">
                 </div>
                 {% endif %}
               <div class="card-body">
-                <p class="card-text">{{ his.historia }}</p>
-                <p> {{his.pk }}</p>              
+                <p class="card-text">{{ his.historia }} </p>           
               </div>
             </div>
             
           </div>
-            
           {% endfor %} 
       </div>
     </div>

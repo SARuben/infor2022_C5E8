@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 import datetime 
-from ejemplo.models import Noticia , Comentario, Video, Historia
+from ejemplo.models import GaleriaFoto, Noticia , Comentario, Video, Historia,Equipo
 from django.views.generic import DetailView,ListView,CreateView,DeleteView,UpdateView
 from django.conf import settings 
 from django.core.mail import send_mail
@@ -57,5 +57,24 @@ class Historias(ListView):
     def  get_queryset(self):
         query = super(Historias,self).get_queryset
         return query 
+
+class Integrantes(ListView):
+    model = Equipo
+    template_name = 'Equipo.html'
+
+    def get_queryset(self):
+        query = super(Integrantes,self).get_queryset
+        return query
+
+class Fotos(ListView):
+    model = GaleriaFoto
+    template_name = 'GaleriaFotos.html'
+
+    def get_queryset(self):
+        query = super(Fotos,self).get_queryset
+        return query
+        
+        
+
 
 

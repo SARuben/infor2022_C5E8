@@ -1,10 +1,8 @@
 {% extends 'esqueleto.html' %}
 {% load static %}
-{% block titulo %}Vientos de Cambios - Equipo{% endblock titulo%}
-
-{% block cuerpo %}
+{% block titulo %} Vientos de Cambios - Equipo {% endblock titulo %}
+{% block estilos %}
 <style>
-
   .titulogaleria   {
     color: #0d6efd;
   }
@@ -52,12 +50,24 @@
   background: linear-gradient(to bottom,#faa29f,#e0e0e0);
 } 
 </style>
+{% endblock estilos %}
 
-<body>
   
-  
-   <div class="container">
-    
+        {% block cuerpo %}  
+        <ul class="nav  nav-pills">
+          <ul class="nav  nav-pills" id="itmnavbar">
+             <li class="nav-item"><a href="{% url 'inicio' %}" class="nav-link" aria-current="page">Inicio</a></li>
+             <li class="nav-item"><a href="{% url 'calendario' %}" class="nav-link">Calendario</a></li>
+             <li class="nav-item"><a href="{% url 'Equipo' %}" class="nav-link active">Equipo</a></li>
+             <li class="nav-item"><a href="{% url 'Historias' %}" class="nav-link">Historias</a></li>
+             <li class="nav-item"><a href="{% url 'videos' %}" class="nav-link">Videos</a></li>
+             <li class="nav-item"><a href="{% url 'Imagenes' %}" class="nav-link">Imagenes</a></li>
+             <li class="nav-item"><a href="{% url 'crearcomentario' %}" class="nav-link">Comentarios</a></li> 
+         </ul>
+      </ul>
+      </div>
+    </nav>
+    </header>
     <section class="py-5 container text-center">
       <div class="row py-lg-3">
         <div class="cajatitulo" >
@@ -93,6 +103,8 @@
         </div>
       </div>
     </section>
+      
+    
     <hr>
     {% load static %}
     <div class="album py-5 rounded">
@@ -116,13 +128,7 @@
           {% endfor %} 
       </div>
     </div>
-    
-  </div> 
-  
-</div>
-
-</body>
+  </div>
 {% endblock cuerpo %}        
-</html>
-
+  
 

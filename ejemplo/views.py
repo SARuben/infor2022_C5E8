@@ -4,7 +4,7 @@ from ejemplo.models import GaleriaFoto, Noticia , Comentario, Video, Historia,Eq
 from django.views.generic import DetailView,ListView,CreateView,DeleteView,UpdateView
 from django.conf import settings 
 from django.core.mail import send_mail
-from .form import NoticiasForm, comentarioForm
+from .form import DetalleFoto, NoticiasForm, comentarioForm 
 from django.urls import reverse_lazy
 
 
@@ -73,6 +73,12 @@ class Fotos(ListView):
     def get_queryset(self):
         query = super(Fotos,self).get_queryset
         return query
+
+class MostrarFoto(UpdateView):
+    model = GaleriaFoto
+    form_class  = DetalleFoto
+    template_name = 'MostrarUnaFoto.html'
+    success_url = reverse_lazy('Imagenes')        
         
         
 

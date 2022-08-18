@@ -12,4 +12,5 @@ urlpatterns = [
     path('Historias/',views.Historias.as_view(), name ='Historias'),
     path('Integrantes/',views.Integrantes.as_view(), name = 'Equipo'),
     path('GaleriaFotos/',views.Fotos.as_view(),name = 'Imagenes'),
+    path('MostrarUnaFoto/<int:pk>/',views.MostrarFoto.as_view(),name='VerUnaFoto'),
 ]

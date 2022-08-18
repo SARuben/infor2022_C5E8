@@ -1,5 +1,5 @@
 from django import forms
-from .models import Comentario, Noticia
+from .models import Comentario, GaleriaFoto, Noticia
 from .models import Noticia
 
 
@@ -13,3 +13,9 @@ class NoticiasForm(forms.ModelForm):
     class Meta:
         model = Noticia
         fields = '__all__'
+
+class DetalleFoto(forms.ModelForm):
+    class Meta:
+        model = GaleriaFoto 
+        fields = '__all__'
+               

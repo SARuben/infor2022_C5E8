@@ -1,11 +1,9 @@
 {% extends 'esqueleto.html' %}
 {% load static %}
-{% block titulo %}Vientos de Cambios - Galeria de Imagenes{% endblock titulo%}
+{% block titulo %}Vientos de Cambios - Galeria de Imagenes{% endblock titulo %}
 
-{% block cuerpo %}
-
+{% block estilos %}
 <style>
-
 /* ------------------------- */
 /* Estilos Generales */
 /* ------------------------- */
@@ -39,35 +37,40 @@
 
     
 .img {
-  width: 100%;
-  max-height: 80%;
+  width: 95%;
+  max-height: 90%;
+}
+.cajafoto {
+  width: 200px;
+  height: 150px;
+  margin: 2px;
+  padding: 1px;
+  text-align: center;
 }
 .cajafoto:hover {
-  box-shadow: 0 1px 5px 1px #cccccc;
-}
-.galeria img {
-     box-shadow: 0 8px 10px -4px rgba(0,0,0,.6);
-     border-radius: 15px;
-}
+  border: solid 1px #cccccc;
+  background-color: whitesmoke;
 
-.galeria .col {
-     margin-bottom: 20px;
-}
-
-@media screen and (max-width: 600px){
-     .materialbox-caption {
-          width: 90%;
-     }
-}
-
-@media screen and (max-width: 992px){
-     .materialbox-caption {
-          width: 70%;
-     }
 }
 </style>
+{% endblock estilos %}
 
-<body>
+{% block cuerpo %}
+        <ul class="nav  nav-pills">
+            <ul class="nav  nav-pills" id="itmnavbar">
+              <li class="nav-item"><a href="{% url 'inicio' %}" class="nav-link" aria-current="page">Inicio</a></li>
+              <li class="nav-item"><a href="{% url 'calendario' %}" class="nav-link">Calendario</a></li>
+              <li class="nav-item"><a href="{% url 'Equipo' %}" class="nav-link">Equipo</a></li>
+              <li class="nav-item"><a href="{% url 'Historias' %}" class="nav-link">Historias</a></li>
+              <li class="nav-item"><a href="{% url 'videos' %}" class="nav-link ">Videos</a></li>
+              <li class="nav-item"><a href="{% url 'Imagenes' %}" class="nav-link active">Imagenes</a></li>
+              <li class="nav-item"><a href="{% url 'crearcomentario' %}" class="nav-link">Comentarios</a></li> 
+            </ul>
+          </ul>      
+         </div>
+         </nav>
+       </header>
+
   <main class="container">
     <div class="row py-lg-3">
       <div class="col-lg-6 col-md-8 mx-auto text-center rounded">
@@ -76,60 +79,19 @@
       </div>
     </div>
     
-  <div class="container FondoFotos justify-content-center col-md-12 shadow p-3 mb-5 rounded">
-    <div class="row">
-         
-    </div>
+    <div class="container FondoFotos justify-content-center col-md-12 shadow p-3 mb-5 rounded">
+      <div class="row galeria px-2 py-2 justify-content-center">
+       {% for Foto in object_list %}  
+          {% if Foto.imagen %} 
+              <div class="cajafoto col-sm-12 col-md-4 col-lg-3">
+                <a href= "{% url 'VerUnaFoto' Foto.id %}">
+                  <img src= "../media/{{ Foto.imagen }}" alt="" class = "img breakpoint shadow bg-body rounded" class="img-fluid">
+                </a>  
+            </div>
+            {% endif %}  
+        {% endfor %} 
 
-    <div class="row galeria px-2 y-2 ">
-      <div class="cajafoto col-sm-12 col-md-4 col-lg-2 ">
-        <a href="../media/imagenes/1.jpg">
-        <img src="../media/imagenes/1.jpg" alt="" class = "img breakpoint shadow bg-body rounded" class="img-fluid rounded">
-      </a>  
-      </div>
-
-      <div class="col-sm-12 col-md-4 col-lg-2">
-        <a href="../media/imagenes/2.jpg">
-        <img src="../media/imagenes/2.jpg" alt="" class = "img breakpoint shadow bg-body rounded" class="img-fluid rounded">
-      </a>
-      </div>
-
-      <div class="col-sm-12 col-md-4 col-lg-2">
-        <img src="../media/imagenes/3.jpg" alt="" class = "img breakpoint shadow bg-body rounded" class="img-fluid rounded">
-      </div>
-      <div class="col-sm-12 col-md-4 col-lg-2">
-        <img src="../media/imagenes/4.jpg" alt="" class = "img breakpoint shadow bg-body rounded" class="img-fluid rounded">
-      </div>
-      <div class="col-sm-12 col-md-4 col-lg-2">
-        <img src="../media/imagenes/5.jpg" alt="" class = "img breakpoint shadow bg-body rounded" class="img-fluid rounded" >
-      </div>
-      <div class="col-sm-12 col-md-4 col-lg-2">
-        <img src="../media/imagenes/6.jpg" alt="" class = "img breakpoint shadow bg-body rounded" class="img-fluid rounded" >
-      </div>
-      <div class="col-sm-12 col-md-4 col-lg-2">
-        <img src="../media/imagenes/7.jpg" alt="" class = "img breakpoint shadow bg-body rounded" class="img-fluid rounded">
-      </div>
-      <div class="col-sm-12 col-md-4 col-lg-2">
-        <img src="../media/imagenes/8.jpg" alt="" class = "img breakpoint shadow bg-body rounded" class="img-fluid rounded">
-      </div>
-      <div class="col-sm-12 col-md-4 col-lg-2">
-        <img src="../media/imagenes/9.jpg" alt="" class = "img breakpoint shadow bg-body rounded" class="img-fluid rounded">
-      </div>
-      <div class="col-sm-12 col-md-4 col-lg-2">
-        <img src="../media/imagenes/10.jpg" alt="" class = "img breakpoint shadow bg-body rounded" class="img-fluid rounded">
-      </div>
-      <div class="col-sm-12 col-md-4 col-lg-2">
-        <img src="../media/imagenes/11.jpg" alt="" class = "img breakpoint shadow bg-body rounded" class="img-fluid rounded">
-      </div>
-      <div class="col-sm-12 col-md-4 col-lg-2">
-        <img src="../media/imagenes/12.jpg" alt="" class = "img breakpoint shadow bg-body rounded" class="img-fluid rounded">
-      </div>
-
-         
-         
     </div>
   </div>  
 </main>       
-</body>
- {% endblock cuerpo%}
-</html>
+ {% endblock cuerpo %}

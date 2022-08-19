@@ -4,7 +4,6 @@
 
 {% block estilos %}
 <style>
-
   .titulogaleria   {
     color: #0d6efd;
   }
@@ -43,8 +42,12 @@
   
 }  
 .card-text {
-  text-overflow: ellipsis;
-  text-align:center;
+  width: 300px;
+  height: 120px;
+  border: 1px ;
+  padding: 2px;
+  overflow: auto;
+
 } 
 .cajafoto {
   width: 300px;
@@ -57,7 +60,6 @@
 .cajainterna {
   width: 280px;
   height: 210px;
-  
   padding: 1px;
   text-align: center;
 }
@@ -102,6 +104,7 @@
     </section>
     {% load static %}
     <div class="album py-5 bg-light shadow p-3 mb-5 rounded">
+      
       <div class="container breakpoint contenedor">
         <div class="row ">
           {% for his in object_list %}  
@@ -110,7 +113,7 @@
               <h4 class="titulo">{{ his.GetNombre }}</h4>
                  {% if his.imagen %} 
                  <div class="cajainterna container">  
-                   <img src="../media/{{ his.imagen }}" class = "img breakpoint shadow bg-body rounded"  alt="Imagen1"  class="img-fluid" id="imagen">
+                   <img src="../media/{{ his.imagen }}" class = "img breakpoint shadow bg-body rounded"  alt="Imagen1"  class="img-fluid" id="imagen" />
                  </div>
                 {% endif %}
               <div class="cajatexto">

@@ -84,14 +84,17 @@
        {% for Foto in object_list %}  
           {% if Foto.imagen %} 
               <div class="cajafoto col-sm-12 col-md-4 col-lg-3">
-                <a href= "{% url 'VerUnaFoto' Foto.id %}">
-                  <img src= "../media/{{ Foto.imagen }}" alt="" class = "img breakpoint shadow bg-body rounded" class="img-fluid">
-                </a>  
+                <a href="{% url 'VerFoto' Foto.id %}">
+                  <img src= "../media/{{ Foto.imagen }}" alt="" class = "img breakpoint shadow bg-body rounded" class="img-fluid" />
+                </a>                        
             </div>
+            
             {% endif %}  
         {% endfor %} 
 
     </div>
   </div>  
-</main>       
+  <!-- Button trigger modal -->
+
+</main>
  {% endblock cuerpo %}

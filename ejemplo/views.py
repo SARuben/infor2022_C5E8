@@ -3,8 +3,7 @@ import datetime
 from ejemplo.models import GaleriaFoto, Noticia , Comentario, Video, Historia,Equipo
 from django.views.generic import DetailView,ListView,CreateView,DeleteView,UpdateView
 from django.conf import settings 
-from django.core.mail import send_mail
-from .form import DetalleFoto, NoticiasForm, comentarioForm 
+from .form import NoticiasForm, comentarioForm, fotoForm 
 from django.urls import reverse_lazy
 
 
@@ -20,9 +19,6 @@ class Inicio(ListView):
         query = super(Inicio,self).get_queryset().order_by('-published_date').values()
         return query
 
-def contacto(request):
-    return render(request,'FormularioContacto.html')
-
 class Videos(ListView):
    model = Video
    template_name = 'videos.html'
@@ -34,16 +30,6 @@ class Videos(ListView):
 
 def calendario(request):    
     return render(request,'calendario.html')
-
-def contactar(request):
-    if request.method == 'POST':
-          asunto = request.POST["txtAsunto"]
-          mensaje = request.POST["txtMensaje"] + "/Email:" + request.POST["txtEmail"]
-          email_desde = settings.EMAIL_HOST_USER
-          email_para = ["arubensanchezg@gmail.com"]
-          send_mail(asunto,mensaje,email_desde,email_para,fail_silently=False) 
-          return render(request,'envioexitoso.html')
-    return render(request,'FormularioContacto.html')      
 
 class CrearComentario(CreateView):
     model = Comentario
@@ -74,11 +60,18 @@ class Fotos(ListView):
         query = super(Fotos,self).get_queryset
         return query
 
-class MostrarFoto(UpdateView):
+class MostrarFoto(DetailView):
     model = GaleriaFoto
-    form_class  = DetalleFoto
+    form_class = fotoForm
     template_name = 'MostrarUnaFoto.html'
-    success_url = reverse_lazy('Imagenes')        
+
+def detalleImagen(request,id):
+    imagen = GaleriaFoto.objects.get(id=id)     
+    context = {'imagen':imagen}
+    return render(request,'VerImagen.html',context)
+
+    
+
         
         
 

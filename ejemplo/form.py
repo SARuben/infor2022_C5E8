@@ -14,7 +14,7 @@ class NoticiasForm(forms.ModelForm):
         model = Noticia
         fields = '__all__'
 
-class DetalleFoto(forms.ModelForm):
+class fotoForm(forms.ModelForm):
     class Meta:
         model = GaleriaFoto 
         fields = '__all__'

@@ -3,8 +3,9 @@ import datetime
 from ejemplo.models import GaleriaFoto, Noticia , Comentario, Video, Historia,Equipo
 from django.views.generic import DetailView,ListView,CreateView,DeleteView,UpdateView
 from django.conf import settings 
-from .form import NoticiasForm, comentarioForm, fotoForm 
+from .form import NoticiasForm, comentarioForm, fotoForm, CustomUserCreationForm 
 from django.urls import reverse_lazy
+from django.contrib.auth import authenticate, login   
 
 
 # Create your views here
@@ -69,6 +70,25 @@ def detalleImagen(request,id):
     imagen = GaleriaFoto.objects.get(id=id)     
     context = {'imagen':imagen}
     return render(request,'VerImagen.html',context)
+
+def registro(request):
+    data = {'form': CustomUserCreationForm()}
+    if request.method == 'POST':
+        formulario = CustomUserCreationForm(data = request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            user = authenticate(username = formulario.cleaned_data["username"],
+                                password = formulario.cleaned_data["password1"])
+            # messages.success(request,'Te has registrado correctamente')                    
+            login(request,user)                    
+            # ir al home
+            return redirect(to ='inicio')
+        
+
+    return render(request,'registration/registro.html',data)
+
+
+
 
     
 

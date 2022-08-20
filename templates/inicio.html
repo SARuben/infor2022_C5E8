@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="es">
-  
+{% load static %} 
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -55,7 +56,7 @@
 
         <nav class="navbar navbar-brand fixed-top navbar-light bg-light">
           <div class="container" id="navbar">
-            <a class="navbar-brand" href="#">
+            
               <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" fill="currentcolor"
                 class="bi bi-music-note-list" viewBox="0 0 16 16">
                 <path d="M12 13c0 1.105-1.12 2-2.5 2S7 14.105 7 13s1.12-2 2.5-2 2.5.895 2.5 2z" />
@@ -66,7 +67,7 @@
               </svg>
               <a class="navbar-brand" href="#" id="nombre">Vientos de Cambios</a>
 
-            </a>
+            
             <ul class="nav  nav-pills" id="itmnavbar">
               <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Inicio</a></li> 
               <li class="nav-item"><a href="#noticias" class="nav-link">Noticias</a></li>
@@ -76,6 +77,13 @@
               <li class="nav-item"><a href="{% url 'videos' %}" class="nav-link">Videos</a></li>
               <li class="nav-item"><a href="{% url 'Imagenes' %}" class="nav-link">Imagenes</a></li>
               <li class="nav-item"><a href="{% url 'crearcomentario' %}" class="nav-link">Comentarios</a></li> 
+              {% if user.is_authenticated %}
+                <li class="nav-item">{{ user.username }} </li>
+              
+              {% else %}
+                <li class="nav-item"><a href="{% url 'login'}'%" class= "nav-link">Iniciar sesion</a></li> 
+                <li class="nav-item"><a href="{% url 'registro'%}" class= "nav-link">Registrate </a><li> 
+              {% endif %}
             </ul>
           </div>
         </nav>
@@ -126,7 +134,7 @@
               <h6>Orquesta Escuela Infantil / juvenil.</h6>  
             </div>
             <p>
-              En sus inicios comienza con 9 alumnos.Actualmente cuenta, la escuela de mùsica,
+              En sus inicios comienza con 9 alumnos. Actualmente cuenta, la escuela de mùsica,
               con 82 alumnos, y la orquesta està compuesta por 50 integrantes.Somos un equipo de docentes y artistas encabezados por Nilce Bravo, Ricardo Velazquez y Gonzalo Cejas.
             </p>
           </div>
@@ -182,14 +190,18 @@
         <h2 class="envaseicono text-center"> <i class="bi bi-file-text-fill " aria-hidden="true"></i></h2>
       </div>  
       <div class="container col-sm-12 col-md-8" id="blog">
+        {% load static %}
+        
          <!-- <div class="col-md-8"></div> -->
             {% for posteo in object_list %}
-            {% load static %}
+            
                 <article class="blog-post" id="articulo">
                    <h2 class="blog-post-title">{{ posteo.title}}</h2>
                    <p class="blog-post-meta">{{ posteo.published_date|date:'d/m/Y' }}</p>
-                   <p class="blog-post-meta">{{ posteo.text }}</p>
-                   {% if posteo.imagen %}
+                   <div class="cajaposteo ">
+                     <p class="blog-post-meta">{{ posteo.text }}</p>
+                     {% if posteo.imagen %}
+                  </div>
                    <div class="box-imagen">
                     <img src= "../media/{{posteo.imagen}}" class="img-fluid d-block mx-auto rounded" width="500" height="400"> 
                   </div> 

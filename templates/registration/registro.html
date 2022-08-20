@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load static %}
+{% load bootstrap5 %}
+
+    {% bootstrap_css %}
+
+    {% bootstrap_javascript %}
+
+    {% bootstrap_messages %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+</head>
+<body>
+    <div class="container">
+    
+        <br>
+        <br>
+        <br>
+        <div class="row">
+           <div class= "col-12 col-md-6 offset-md-3">
+            <div class="card rounded">
+            <div class="card-body">
+              <h2>Ingresa tus datos</h2>
+              hr
+              <form action="" method="POST" class="form">
+                {% csrf_token %}
+                
+                {{ form }}
+                <br>
+                <a href="{% url 'inicio' %}"> Ir al Inicio </a> |
+                <a href="{% url 'inicio' %}">Iniciar sesion</a>
+                <hr>
+                <input type="submit" value="Ingresar" class="btn btn-success float-right">
+              </form>
+            </div>
+          </div>
+           </div>
+        </div>
+    </div>
+</body>
+</html>

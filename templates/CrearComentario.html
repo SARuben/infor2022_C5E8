@@ -35,16 +35,19 @@
         
         <div class="container px-4 py-2 ">
             <div class="encabezadocomentario">
-                <h2 class="tituloformulario">Dejanos tus comentarios</h2>
+                <h2 class="tituloformulario">Dejanos tus comentarios {{ user.first_name }} </h2>
             </div>
             <div class="iconocomentario text-center">    
                 <h3><i class="bi bi-chat-square-text" aria-hidden="true"></i></h3>
             </div>    
-        <div class="container p-1 text-white col-md-6" id="formulario">
+        <div class="container p-1 text-white col-md-6 offset-md-3" id="formulario">
           <div class="row my-2 justify-content-center">
               <div class="col-md-10">
                   <form method="post" class="form">
                       {% csrf_token %}
+                      {% if user.is_authenticated %}
+                        
+                      {% endif %}                     
                       {% bootstrap_form form %}
                       {% buttons %}
                       <button type="submit" class="btn btn-primary">Enviar</button>

@@ -2,7 +2,7 @@
 	padding: 0px;
 }
 #itmnavbar {
-	font-size: 16px;
+	font-size: 15px;
 }
 .imagen {
 	text-align: center;
@@ -144,7 +144,7 @@
 }
 #nombre{
 	color: #7430f9;
-	font-size:larger;
+	font-size:x-large;
 }
 #titulonoticias {
 	box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
@@ -215,4 +215,20 @@
 .blog-post-meta {
 	overflow: auto;
 }
-
+.accordion-body {
+	overflow: auto;
+}
+.dropdown-menu {
+	width: auto;
+	margin: 4rem auto;
+  }
+  
+  .dropdown-menu-macos {
+	gap: .25rem;
+	padding: .5rem;
+	border-radius: .5rem;
+  }
+  .dropdown-menu-macos .dropdown-item {
+	background-color: primary;
+	border-radius: .25rem;
+  }

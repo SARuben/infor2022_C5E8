@@ -5,9 +5,7 @@ from .models import Noticia
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
-
 class comentarioForm(forms.ModelForm):
-    
     class Meta: 
         model = Comentario
         # fields = ('dni','apellido','nombre','email','telefono','textoComentario',)
@@ -16,7 +14,8 @@ class comentarioForm(forms.ModelForm):
 class NoticiasForm(forms.ModelForm):
     class Meta:
         model = Noticia
-        fields = '__all__'
+        fields = ['titulo','texto','imagen']
+        # fields = '__all__'
 
 class fotoForm(forms.ModelForm):
     class Meta:

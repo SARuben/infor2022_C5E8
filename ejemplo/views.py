@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-import datetime 
 from ejemplo.models import GaleriaFoto, Noticia , Comentario, Video, Historia,Equipo
 from django.views.generic import DetailView,ListView,CreateView,DeleteView,UpdateView
 from django.conf import settings 
@@ -7,7 +6,8 @@ from .form import NoticiasForm, comentarioForm, fotoForm, CustomUserCreationForm
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login  
 from django.contrib import messages
-
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils import timezone
 
 
 # Create your views here
@@ -19,7 +19,7 @@ class Inicio(ListView):
   paginate_by  = 3
 
   def get_queryset(self): 
-        query = super(Inicio,self).get_queryset().order_by('-published_date').values()
+        query = super(Inicio,self).get_queryset().order_by('-id').values()
         return query
 
 class Videos(ListView):
@@ -63,11 +63,6 @@ class Fotos(ListView):
         query = super(Fotos,self).get_queryset
         return query
 
-class MostrarFoto(DetailView):
-    model = GaleriaFoto
-    form_class = fotoForm
-    template_name = 'MostrarUnaFoto.html'
-
 def detalleImagen(request,id):
     imagen = GaleriaFoto.objects.get(id=id)     
     context = {'imagen':imagen}
@@ -89,7 +84,22 @@ def registro(request):
 
     return render(request,'registration/registro.html',data)
 
+class AgregarPosteo(CreateView):
+    model =  Noticia
+    form_class  = NoticiasForm
+    template_name = 'AgregarPosteo.html'
 
+    def form_valid(self, form):
+        form.instance.autor = self.request.user
+        form.instance.fecha_de_publicacion = timezone.now()
+        return super().form_valid(form)
+    success_url = reverse_lazy('inicio')
+
+
+def VerPosteo(request,id):
+    posteo = Noticia.objects.get(id=id)     
+    context = {'posteo':posteo}
+    return render(request,'VerPosteo.html',context)
 
 
     

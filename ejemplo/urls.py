@@ -11,4 +11,6 @@ urlpatterns = [
     path('GaleriaFotos/',views.Fotos.as_view(),name = 'Imagenes'),
     path('VerImagen/<int:id>/',views.detalleImagen, name='VerFoto'),
     path('registro/',views.registro,name='registro'),
+    path('AgregarPosteo/',views.AgregarPosteo.as_view(), name='AgregarPosteo'),
+    path('VerPosteo/<int:id>/',views.VerPosteo, name='VerPosteo'),
 ]

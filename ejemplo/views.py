@@ -16,7 +16,7 @@ class Inicio(ListView):
   model = Noticia
   form_class = NoticiasForm
   template_name = 'inicio.html'
-  paginate_by  = 3
+  paginate_by  = 4
 
   def get_queryset(self): 
         query = super(Inicio,self).get_queryset().order_by('-id').values()

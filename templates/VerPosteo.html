@@ -31,9 +31,11 @@
    color: #0d6efd;
 }
  .cajaimagen {
+   border: 2px solid #e0e0e0;
    margin: 10px;
  } 
   </style>
+
 </head>
 <body class="cuerpo">
     <header>
@@ -67,8 +69,8 @@
                 
                 <p>Publicado el : {{posteo.fecha_de_publicacion}}</p>
                 
-                <div class="cajaimagen rounded">
-                  <img src=" {{ posteo.imagen.url}}" width="350" height="240" class="img rounded"/>
+                <div class="cajaimagen rounded shadow rounded">
+                  <img src=" {{ posteo.imagen.url}}" width="330" height="240" class="img rounded"/>
               </div>
                 <p>{{ posteo.imagen.name }} </p>
                  

@@ -76,19 +76,18 @@
             <button class="btn btn-success btn-lg">Regresar</button>
          </a>
         </div>  
-        <div class="row col-md-8 offset-md-2 my-5 shadow-lg p-3 mb-5 bg-body rounded">          
+        <div class="row col-md-8 offset-md-2 my-5 justify-content-center shadow-lg p-3 mb-5 bg-body rounded">
           {% if user.is_authenticated %}
             <h4 class="fw-light label text-center">Tu comentario {{user.username }} </h4>
             <form  action="{% url 'ComentarPosteo' posteo.pk %}" method="Post">
               {% csrf_token %}
                   <textarea placeholder= "Aqui tu Comentario..." class="form-control" id="cuerpo"
-                     name="cuerpo" required rows="3"> Texto del comentario
-                  </textarea>              
+                     name="cuerpo"> Texto del comentario</textarea>
+                                
                      
                    <div class="d-grid d-md-flex justify-content-md-end">
-                      <button type= "submit" class="btn btn-primary ">Enviar</button>
+                      <button type= "submit" class="btn btn-primary" >Enviar</button>
                   </div>
-                 
             </form>
           {% endif %}
         </div>

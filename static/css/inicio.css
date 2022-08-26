@@ -129,8 +129,9 @@
 	border: 1px solid rgba(0, 0, 0, .15);	
 }  
 .divisor2 {
-	height: 3rem;	
-}
+	height: 3rem;
+	border: 1px solid rgba(0, 0, 0, .15);	
+} 
 
 .bi {
 	vertical-align: -.125em;

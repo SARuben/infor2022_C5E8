@@ -76,20 +76,23 @@
             <button class="btn btn-success btn-lg">Regresar</button>
          </a>
         </div>  
-        <div class="row col-md-8 offset-md-2 my-5 justify-content-center shadow-lg p-3 mb-5 bg-body rounded">          
-            {% if user.is_authenticated %}
-              <form class="form" action="{% url 'ComentarPosteo' posteo.pk %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                   <h4 class="fw-light label text-center" text>Tu comentario</h4>
-                    <textarea class= "form-control text-start" name="comentar" placeholder="Aqui tu comentario..." >
-                   </textarea> 
+        <div class="row col-md-8 offset-md-2 my-5 shadow-lg p-3 mb-5 bg-body rounded">          
+          {% if user.is_authenticated %}
+            <h4 class="fw-light label text-center">Tu comentario {{user.username }} </h4>
+            <form  action="{% url 'ComentarPosteo' posteo.pk %}" method="Post">
+              {% csrf_token %}
+                  <textarea placeholder= "Aqui tu Comentario..." class="form-control" id="cuerpo"
+                     name="cuerpo" required rows="3"> Texto del comentario
+                  </textarea>              
+                     
                    <div class="d-grid d-md-flex justify-content-md-end">
-                     <button type="submit" class="btn btn-primary ">Enviar</button>
-                   </div> 
-                  
-              </form>
-            {% endif %}
+                      <button type= "submit" class="btn btn-primary ">Enviar</button>
+                  </div>
+                 
+            </form>
+          {% endif %}
         </div>
+        
         <div class="row col-md-8 offset-md-2 my-5 justify-content-center shadow-lg p-3 mb-5 bg-body rounded">            
             {% if comentarios.count > 0 %}
               <h4 class="fw-light text-center">Hay {{comentarios.count }} comentarios para esta publicacion</h4>
@@ -99,7 +102,9 @@
             <div>
               {% for comentario in comentarios %}
               <hr>
-              <p> Realizado  {{ comentario.creador }} el {{ comentario.fechacreacion |date:'d/m/Y' }} </p>
+              <p style="text-align:center">
+                 Realizado por {{ comentario.creador }} el {{ comentario.fechacreacion |date:'d/m/Y' }}
+              </p>
               
               <pre style="font-family:inherit; font-size:1em ">
                 {{ comentario.cuerpo}}

@@ -1,15 +1,17 @@
 from django.shortcuts import render, redirect
-from ejemplo.models import GaleriaFoto, Noticia , Comentario, Video, Historia,Equipo
+from ejemplo.models import ComentarioPosteo, GaleriaFoto, Noticia , Comentario, Video, Historia,Equipo
 from django.views.generic import DetailView,ListView,CreateView,DeleteView,UpdateView
 from django.conf import settings 
-from .form import NoticiasForm, comentarioForm, fotoForm, CustomUserCreationForm 
+from .form import ComentarPosteoForm, NoticiasForm, comentarioForm, fotoForm, CustomUserCreationForm 
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login  
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
+import datetime
+from django.http import  HttpResponse
 
-
+app_name = 'ejemplo'
 # Create your views here
 
 class Inicio(ListView):
@@ -93,13 +95,40 @@ class AgregarPosteo(CreateView):
         form.instance.autor = self.request.user
         form.instance.fecha_de_publicacion = timezone.now()
         return super().form_valid(form)
+        
     success_url = reverse_lazy('inicio')
 
 
 def VerPosteo(request,id):
-    posteo = Noticia.objects.get(id=id)     
-    context = {'posteo':posteo}
+    noticia = Noticia.objects.get(id=id)     
+    comentarios = ComentarioPosteo.objects.filter(posteo=id).order_by('-pk')
+    context = {'posteo': noticia,'comentarios': comentarios}
     return render(request,'VerPosteo.html',context)
+
+def ComentarPosteo(request,noticia_id):
+    posteo =  Noticia.objects.get(id = noticia_id)
+    if request.method == 'POST':
+        form = ComentarPosteoForm(request.POST)
+        if form.is_valid():
+            nComentario = form.save(commit=False)
+            nComentario.posteo = posteo
+            nComentario.creador = request.user
+            nComentario.save() 
+            return redirect('VerPosteo',noticia_id) 
+    else:    
+        form = ComentarPosteoForm()
+
+    
+        
+    
+    
+    
+       
+
+    
+
+  
+
 
 
     

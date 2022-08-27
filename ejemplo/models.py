@@ -1,5 +1,4 @@
 from distutils.command.upload import upload
-from email.mime import image
 from django.db import models
 from django.utils import timezone
 from django.db.models.fields import URLField
@@ -17,9 +16,9 @@ class Noticia(models.Model):
     def publish(self):
         self.fecha_de_publicacion = timezone.now()
         self.save()
-
+ 
     def __str__(self):
-        return self.titulo
+        return self.titulo    
 
       
 
@@ -65,6 +64,11 @@ class GaleriaFoto(models.Model):
     descripcion = models.CharField(max_length = 40)
     imagen = models.ImageField(upload_to = 'imagenes/', null=True, blank=True)
 
+class ComentarioPosteo(models.Model):
+    posteo = models.ForeignKey('Noticia',on_delete=models.CASCADE)
+    creador = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    cuerpo  = models.TextField(max_length = 300)
+    fechacreacion = models.DateTimeField(auto_now_add=True, null=True)
 
- # Create your models 
+# Create your models 
 # here.

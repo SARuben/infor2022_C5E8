@@ -1,6 +1,6 @@
 from ast import Pass
 from django import forms
-from .models import Comentario, GaleriaFoto, Noticia
+from .models import Comentario, ComentarioPosteo, GaleriaFoto, Noticia
 from .models import Noticia
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -30,6 +30,12 @@ class CustomUserCreationForm(UserCreationForm):
         model = User 
         fields = ['username','first_name','last_name','email','password1','password2']
         help_texts = { k: '' for k in fields}
-        
+
+
+class ComentarPosteoForm(forms.ModelForm):
+    class Meta:
+        model = ComentarioPosteo
+        fields = ['cuerpo']
+
 
                

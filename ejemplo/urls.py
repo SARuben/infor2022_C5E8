@@ -13,4 +13,6 @@ urlpatterns = [
     path('registro/',views.registro,name='registro'),
     path('AgregarPosteo/',views.AgregarPosteo.as_view(), name='AgregarPosteo'),
     path('VerPosteo/<int:id>/',views.VerPosteo, name='VerPosteo'),
-]
+    path('ComentarPosteo/<int:noticia_id>/',views.ComentarPosteo,name='ComentarPosteo'),
+   
+]    

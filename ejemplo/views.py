@@ -86,7 +86,7 @@ def registro(request):
 
     return render(request,'registration/registro.html',data)
 
-class AgregarPosteo(CreateView):
+class AgregarPosteo(CreateView):   
     model =  Noticia
     form_class  = NoticiasForm
     template_name = 'AgregarPosteo.html'
@@ -97,7 +97,23 @@ class AgregarPosteo(CreateView):
         return super().form_valid(form)
         
     success_url = reverse_lazy('inicio')
+    
+class EditarPosteo(UpdateView):
+    model = Noticia
+    form_class = NoticiasForm
+    template_name = 'AgregarPosteo.html'
 
+    def form_valid(self, form):
+        form.instance.autor = self.request.user
+        form.instance.fecha_de_publicacion = timezone.now()
+        return super().form_valid(form)
+        
+    success_url = reverse_lazy('inicio')
+
+class EliminarPosteo(DeleteView):
+    model = Noticia
+    template_name = 'Verificacion.html'
+    success_url = reverse_lazy('inicio')    
 
 def VerPosteo(request,id):
     noticia = Noticia.objects.get(id=id)     

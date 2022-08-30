@@ -12,6 +12,8 @@ urlpatterns = [
     path('VerImagen/<int:id>/',views.detalleImagen, name='VerFoto'),
     path('registro/',views.registro,name='registro'),
     path('AgregarPosteo/',views.AgregarPosteo.as_view(), name='AgregarPosteo'),
+    path('EditarPosteo/<int:pk>',views.EditarPosteo.as_view(),name = 'EditarPosteo'),
+    path('EliminarPosteo/<int:pk>',views.EliminarPosteo.as_view(),name='EliminarPosteo'),
     path('VerPosteo/<int:id>/',views.VerPosteo, name='VerPosteo'),
     path('ComentarPosteo/<int:noticia_id>/',views.ComentarPosteo,name='ComentarPosteo'),
    

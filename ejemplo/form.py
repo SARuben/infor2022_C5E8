@@ -24,12 +24,12 @@ class fotoForm(forms.ModelForm):
 
 class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField()
-    password1 = forms.CharField(label='Contraseña',widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Contraseña',widget=forms.PasswordInput)
+    #password1 = forms.CharField(label='Contraseña',widget=forms.PasswordInput)
+    #password2 = forms.CharField(label='Contraseña',widget=forms.PasswordInput)
     class Meta:
         model = User 
         fields = ['username','first_name','last_name','email','password1','password2']
-        help_texts = { k: '' for k in fields}
+        #help_texts = { k: '' for k in fields}
 
 
 class ComentarPosteoForm(forms.ModelForm):

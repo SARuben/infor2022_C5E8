@@ -20,8 +20,6 @@ class Noticia(models.Model):
     def __str__(self):
         return self.titulo    
 
-      
-
 class Comentario(models.Model):
     dni = models.IntegerField(blank=True, null=True)
     apellido = models.CharField(max_length=50,blank=False, null=False)

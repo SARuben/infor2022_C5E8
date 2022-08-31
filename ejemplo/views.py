@@ -9,7 +9,7 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
 import datetime
-from django.http import  HttpResponse
+
 
 app_name = 'ejemplo'
 # Create your views here

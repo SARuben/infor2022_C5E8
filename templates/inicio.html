@@ -28,13 +28,21 @@
       display: none;
     }
 
-    #abajo,#arriba {
+    #abajo,
+    #arriba {
       font-size: x-large;
     }
 
-  .fw-light {
-  color: #0d6efd;
+    .fw-light {
+      color: #0d6efd;
+    }
+
+   .botonera {
+    display: grid;
+    grid-template-columns: 40% 30% 30%;
+    gap: 10px;  
   }
+
   </style>
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <symbol id="home" viewBox="0 0 16 16">
@@ -230,7 +238,7 @@
 
   <main>
     <div class="container">
-    
+
       <div class="container px-4 py-5" id="content">
         <div class="imagen">
           <img src="../static/Imagenes/VientosONG.jpg" alt="">
@@ -302,7 +310,7 @@
           </div>
         </div>
 
-        <div class="divisor2"></div>
+        <br><br>
 
         <div class="cajaColab">
           <h2 class="pb-2 border-bottom" Id="tituloColab"> <b>COLABORACION:</b></h2>
@@ -316,7 +324,7 @@
           </p>
         </div>
 
-        <div class="divisor2"></div>
+        <br><br>
 
         <div>
           <h2 class="pb-2 border-bottom" id="contacto"><b>CONTACTOS: </b></h2>
@@ -330,30 +338,29 @@
             </a>
           </p>
         </div>
-
-        <div class="divisor2"></div>
       </div>
+      <br><br><br>
       <div class="noticias" id="noticias">
         <h1 class="pb-2 border-bottom" id="titulonoticias"><b>Noticias</b></h1>
         <h2 class="envaseicono text-center">
           <i class="bi bi-file-text-fill" style="color:green" aria-hidden="true"></i>
-             
           {% if user.is_authenticated %}
-              <a href="{% url 'AgregarPosteo' %}">
-                 <button type="button" class="btn btn-success">Agregar Posteo</button>
-              </a>
+          <a href="{% url 'AgregarPosteo' %}">
+            <button type="button" class="btn btn-success">Agregar Posteo</button>
+          </a>
           {% else %}
-            <h4 class = "fw-light text-center">Iniciar sesión para ver detalle de posteos, realizar comentarios,
-                                               editar y/o eliminar los que has creado.</h4>    
-          
+          <h4 class="fw-light text-center">Iniciar sesión para ver detalle de posteos, realizar comentarios,
+            editar y/o eliminar los que has creado.</h4>
+
           {% endif %}
         </h2>
       </div>
       {% load static %}
+      
       <div class="container col-sm-12 col-md-10" id="blog">
-          {% for posteo in object_list %}
-          <div class="row">
-          <div class="col-sm-12 col-md-9">
+        {% for posteo in object_list %}
+        <div class="row">
+          <div class="col-sm-12 col-md-8">
             <div class="accordion" id="accordionExample">
               <div class="accordion-item">
                 <h2 class="accordion-header" id="headingOne">
@@ -361,53 +368,55 @@
                     data-bs-target="#collapse{{ forloop.counter }}" aria-expanded="true"
                     aria-controls="collapse{{ forloop.counter }}">
                     <div class="formatotexto text-center ">
-                      <strong> {{ posteo.titulo}} &nbsp;  </strong>
-                       {{ posteo.fecha_de_publicacion|date:'d/m/Y' }} 
+                      <strong> {{ posteo.titulo}} &nbsp; </strong>
+                      {{ posteo.fecha_de_publicacion|date:'d/m/Y' }}
                     </div>
                   </button>
 
                 </h2>
-                <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse" 
-                    aria-labelledby="headingOne"
+                <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="headingOne"
                   data-bs-parent="#accordionExample">
                   <div class="accordion-body">
                     <div class="mb-3">
-                      <textarea class="col-sm-12 col-md-8"  id='posteotexto'  rows="5">{{ posteo.texto}}</textarea>
+                      <textarea class="col-sm-12 col-md-8" id='posteotexto' rows="5">{{ posteo.texto}}</textarea>
                     </div>
                     <!-- {{ posteo.texto }} -->
+                    {% if posteo.imagen %} 
                     <div class="box-imagen">
-                      <img src="../media/{{posteo.imagen}}" class="img-fluid d-block mx-auto rounded"
-                       width="150" height="100">
+                      <img src="../media/{{posteo.imagen}}" class="img-fluid d-block mx-auto rounded" width="150"
+                        height="100">
                     </div>
+                    {% endif %}
                   </div>
                 </div>
               </div>
             </div>
           </div>
           {% if user.is_authenticated %}
-          <div class="col-sm-12 col-md-1">
-              <a href="{% url 'VerPosteo' posteo.id %}">
-                  <button type="button" class="btn btn-warning">Ver</button>
+          <div class="botonera col-sm-12 col-md-4">
+            <a href="{% url 'VerPosteo' posteo.id %}">
+              <button class="btn btn-sm btn-warning">Ver/Comentar </button>
+            </a>     
+          
+          
+          {% if posteo.autor_id == request.user.id %}
+          
+              <a href="{% url 'EditarPosteo' posteo.id %}">
+                <button type="button" class="btn btn-sm btn-primary">Editar</button>
               </a>
-          </div>
-          {% if posteo.autor_id == request.user.id %}  
-            <div class="col-sm-12 col-md-1">
-             <a href="{% url 'EditarPosteo' posteo.id %}">
-                  <button type="button" class="btn btn-primary">Editar</button>
-             </a>
-            </div>
-
-            <div class="col-sm-12 col-md-1">
+          
+          
              <a href="{% url 'EliminarPosteo' posteo.id %}">
-                  <button type="button" class="btn btn-danger">Eliminar</button>
-              </a>
-            </div>
-            {% endif %}  
+                <button type="button" class="btn btn-sm btn-danger">Eliminar</button>
+             </a>
+          </div>  
           {% endif %}
-        </div>   
-        <br>
-          {% endfor %}
+          {% endif %}
         </div>
+        
+        <br>
+        {% endfor %}
+      </div>
       <br>
       <div class="pagination justify-content-center pagination-lg">
         {% if page_obj.has_previous %}
@@ -428,10 +437,8 @@
           {{page_obj.next_page_number}}
         </a>
         {% endif %}
-      <!---------------------------------------------------------------------->
         
-      <!------------------------------------------------------------------------>
-    
+
       </div>
     </div>
 
@@ -494,12 +501,9 @@
       </div>
 
     </footer>
-    <!-- Footer -->
-
 
 
   </main>
   <script src="../static/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>

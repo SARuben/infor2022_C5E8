@@ -6,7 +6,7 @@ from .form import ComentarPosteoForm, NoticiasForm, comentarioForm, fotoForm, Cu
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login  
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
 from django.utils import timezone
 import datetime
 
@@ -22,6 +22,7 @@ class Inicio(ListView):
 
   def get_queryset(self): 
         query = super(Inicio,self).get_queryset().order_by('-id').values()
+
         return query
 
 class Videos(ListView):
@@ -94,8 +95,10 @@ class AgregarPosteo(CreateView):
     def form_valid(self, form):
         form.instance.autor = self.request.user
         form.instance.fecha_de_publicacion = timezone.now()
+        messages.success(self.request,'Se incorporó exitosamente el posteo') 
         return super().form_valid(form)
-        
+
+    
     success_url = reverse_lazy('inicio')
     
 class EditarPosteo(UpdateView):
@@ -106,13 +109,15 @@ class EditarPosteo(UpdateView):
     def form_valid(self, form):
         form.instance.autor = self.request.user
         form.instance.fecha_de_publicacion = timezone.now()
+        messages.success(self.request,'Se actualizó correctamente el posteo.') 
         return super().form_valid(form)
         
     success_url = reverse_lazy('inicio')
 
-class EliminarPosteo(DeleteView):
+class EliminarPosteo(SuccessMessageMixin, DeleteView):
     model = Noticia
     template_name = 'Verificacion.html'
+    success_message = 'Se eliminó sin problemas el posteo.' 
     success_url = reverse_lazy('inicio')    
 
 def VerPosteo(request,id):

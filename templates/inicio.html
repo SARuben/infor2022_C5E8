@@ -15,33 +15,9 @@
   <!-- Custom styles for this template -->
   <link href="../static/css/inicio.css" rel="stylesheet">
   <style>
-    #show,
-    #hide {
-      display: none;
-    }
-
-    input#show:checked~div#content {
-      display: block;
-    }
-
-    input#hide:checked~div#content {
-      display: none;
-    }
-
-    #abajo,
-    #arriba {
-      font-size: x-large;
-    }
-
     .fw-light {
       color: #0d6efd;
     }
-
-   .botonera {
-    display: grid;
-    grid-template-columns: 40% 30% 30%;
-    gap: 10px;  
-  }
 
   </style>
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -351,7 +327,15 @@
           {% else %}
           <h4 class="fw-light text-center">Iniciar sesión para ver detalle de posteos, realizar comentarios,
             editar y/o eliminar los que has creado.</h4>
-
+          {% endif %}
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert col-md-6 offset-md-3 alert-dismissible" style="font-size:80%" role="alert">
+               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar" style="font-size:60%">
+               </button>
+                <div class="mensaje fw-light text-center">{{ message }} </div>  
+              </div>  
+            {% endfor %} 
           {% endif %}
         </h2>
       </div>
@@ -393,27 +377,25 @@
             </div>
           </div>
           {% if user.is_authenticated %}
-          <div class="botonera col-sm-12 col-md-4">
+          <div class="col-sm-12 col-md-2">
             <a href="{% url 'VerPosteo' posteo.id %}">
-              <button class="btn btn-sm btn-warning">Ver/Comentar </button>
+              <button class="btn btn-warning">Ver/Comentar </button>
             </a>     
-          
-          
-          {% if posteo.autor_id == request.user.id %}
-          
-              <a href="{% url 'EditarPosteo' posteo.id %}">
-                <button type="button" class="btn btn-sm btn-primary">Editar</button>
-              </a>
-          
-          
+          </div>
+              {% if posteo.autor_id == request.user.id %}
+            <div class="col-sm-12 col-md-1">
+               <a href="{% url 'EditarPosteo' posteo.id %}">
+                 <button type="button" class="btn btn-primary">Editar</button>
+               </a>
+           </div>
+           <div class="col-sm-12 col-md-1">         
              <a href="{% url 'EliminarPosteo' posteo.id %}">
-                <button type="button" class="btn btn-sm btn-danger">Eliminar</button>
+                <button type="button" class="btn btn-danger">Eliminar</button>
              </a>
-          </div>  
+            </div>    
           {% endif %}
           {% endif %}
         </div>
-        
         <br>
         {% endfor %}
       </div>
@@ -445,10 +427,8 @@
     <!-- Footer -->
 
     <footer class="text-center text-lg-start">
-
-      <!-- Section: Links  -->
-      <section class="seccion" style="background-color: rgba(0, 0, 0, 0.05)">
-        <div class="container text-center text-md-start mt-5">
+      <section class="seccion" style="background-color: rgba(44, 35, 35, 0.05)">
+        <div class="container text-center text-md-start mt-5 py-2">
           <div class=" row justify-content-between">
             <div class="col-md-3 col-sm-12 col-xs-3">
               <h4 class="text-uppercase fw-bold mb-4">Ubicacion</h4>
@@ -488,9 +468,12 @@
 
 
       <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-        © 2022 Informatorio
+        2022 Informatorio Chaco Argentina
         <h4>
           <i class="bi bi-8-circle-fill"></i>
+          <a href="https://github.com/SARuben/infor2022_C5E8.git">
+             <i class="bi bi-github" style="color:#0d6efd"></i>
+          </a>
         </h4>
         <ul class="list-group list-group-horizontal">
           <li class="list-group-item list-group-item-info">Vanina Gutierrez: gvaninanoemi@gmail.com</li>

@@ -39,43 +39,43 @@
       <form action="" method="POST" class="form">
         {% csrf_token %}
 
-        <div class="cajainterna text-center">
-          <div class="row mb-3 col-form-label">
-            <label class="col-sm-4 col-form-label"> Usuario: </label>
-            <div class="col-sm-8">
+        <div class="cajainterna">
+          <div class="row mb-3">
+            <label class="col-sm-4 col-md-4 col-form-label"> Usuario: </label>
+            <div class="col-sm-8 col-md-8 ">
               {{ form.username }}
             </div>
           </div>
 
-          <div class="row mb-3 col-form-label">
-            <label class="col-sm-4">Nombre:</label>
-            <div class="col-sm-8">
+          <div class="row mb-3">
+            <label class="col-sm-4 col-md-4">Nombre:</label>
+            <div class="col-sm-8 col-md-8">
               {{ form.first_name }}
             </div>
           </div>
 
           <div class="row mb-3">
-            <label class="col-sm-4 col-form-label">Apellido:</label>
-            <div class="col-sm-8">
+            <label class="col-sm-4 col-md-4">Apellido:</label>
+            <div class="col-sm-8 col-md-8">
               {{ form.last_name }}
             </div>
           </div>
           <div class="row mb-3">
-            <label class="col-sm-4 col-form-label">Correo:</label>
-            <div class="col-sm-8">
+            <label class="col-sm-4 ">Correo:</label>
+            <div class="col-sm-8 col-md-8">
               {{ form.email }}
             </div>
           </div>
           <div class="row mb-3">
-            <label class="col-sm-4 col-form-label">Contraseña:</label>
-            <div class="col-sm-8">
+            <label class="col-sm-4 col-md-4">Contraseña:</label>
+            <div class="col-sm-8 col-md-8">
               {{ form.password1 }}
 
             </div>
           </div>
           <div class="row mb-3">
-            <label class="col-sm-4 col-form-label">Confirmar Contraseña:</label>
-            <div class="col-sm-8">
+            <label class="col-sm-4 col-md-4">Confirmar Contraseña:</label>
+            <div class="col-sm-8 col-md-8">
               {{ form.password2 }}
             </div>
           </div>

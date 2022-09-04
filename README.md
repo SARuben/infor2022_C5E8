@@ -22,27 +22,27 @@ Crear previamente un entorno virtual donde vas a instalar las dependencias del p
 
 ### Página web:
 
-el proyecto está desplegado en el host pythonanywhere (https://www.pythonanywhere.com/) y la dirección de la pagina es:
+El proyecto está desplegado en el host pythonanywhere (https://www.pythonanywhere.com/) y la dirección de la pagina es:
 http://vdcblog8.pythonanywhere.com/
 
 
 ### Construído con: 
-El sitio esta construido con estas herramientas: 
- Django, python, Html, CSS, Bootstrap. Javascript
+El sitio esta construído con estas herramientas: 
+ Django, python, Html, CSS, Bootstrap. Javascript.
 
 
 ### Autores: 
-El proyecto se desarrollo en el marco del curso progrmación y desarrollo web dictado por informatorio (https://empleo.chaco.gob.ar/capacitaciones/Programaci%C3%B3n-y-Desarrollo-Web#/)
+El proyecto se desarrolló en el marco del curso programación y desarrollo web dictado por informatorio (https://empleo.chaco.gob.ar/capacitaciones/Programaci%C3%B3n-y-Desarrollo-Web#/)
 
 Los autores somos:
 
 * **Vanina Gutierrez**  (gvaninanoemi@gmail.com)
 * **Omar Solís** (rafael_qaz@hotmail.com)   
 * **Miguel Mongelo**  (mikemongelo@gmail.com)
-* **Ruben Sánchez** (arubensanchezg@gmail.com)
+* **Rubén Sánchez** (arubensanchezg@gmail.com)
 
 
-### Licencia 
+### Licencia: 
 Este proyecto es de código abierto.
 
 ---

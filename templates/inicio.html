@@ -320,7 +320,10 @@
         <h1 class="pb-2 border-bottom" id="titulonoticias"><b>Noticias</b></h1>
         <h2 class="envaseicono text-center">
           <i class="bi bi-file-text-fill" style="color:green" aria-hidden="true"></i>
+          {% comment %} {{ request.get_full_path }} {% endcomment %}
+          
           {% if user.is_authenticated %}
+            
           <a href="{% url 'AgregarPosteo' %}">
             <button type="button" class="btn btn-success">Agregar Posteo</button>
           </a>
@@ -410,7 +413,7 @@
           {{ page_obj.previous_page_number}} </a>
         {% endif %}
         <span class="current">
-          Pagina {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+          Pagina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
         </span>
         <!-- Pagina actual  {{ page_obj.number}}  -->
 

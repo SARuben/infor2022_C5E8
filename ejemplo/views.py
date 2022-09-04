@@ -22,7 +22,6 @@ class Inicio(ListView):
 
   def get_queryset(self): 
         query = super(Inicio,self).get_queryset().order_by('-id').values()
-
         return query
 
 class Videos(ListView):
